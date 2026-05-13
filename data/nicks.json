@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Nick VIP Server 1",
+    "server": "Server 1",
+    "planet": "Xayda",
+    "sp": "120 tỷ",
+    "dt": "100 tỷ",
+    "price": 500000,
+    "image": "images/nick1.jpg",
+    "description": "nhiều cải trang,quần hủy diệt 8s, pet đẹp"
+  },
+  {
+    "id": 2,
+    "name": "Nick Trâu Server 1",
+    "server": "Server 1",
+    "planet": "Namek",
+    "sp": "110 tỷ",
+    "dt": "95 tỷ",
+    "price": 350000,
+    "image": "images/nick2.jpg",
+    "description": "nhiều cải trang, skill8,đồ hủy diệt,pet đẹp"
+  }
+]
