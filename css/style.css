@@ -135,13 +135,16 @@ nav a:hover{
 
 .banner{
     flex:1;
+    height:420px;
 }
 
 .banner img{
     width:100%;
-    height:100%;
+    height:420px;
     object-fit:cover;
     border-radius:20px;
+    display:block;
+    transition:opacity 0.3s ease;
 }
 
 .products{
@@ -259,4 +262,154 @@ nav a:hover{
     right:20px;
     font-size:30px;
     cursor:pointer;
+}
+.services{
+    padding:90px 0;
+    background:
+    radial-gradient(circle at top left,#1b2233,#0f1117);
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:35px;
+}
+
+.service-card{
+    position:relative;
+    background:rgba(22,27,39,0.95);
+    border-radius:28px;
+    overflow:hidden;
+    transition:0.45s;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.5);
+    backdrop-filter:blur(12px);
+}
+
+.service-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,152,0,0.15),
+        transparent,
+        transparent
+    );
+    opacity:0;
+    transition:0.4s;
+}
+
+.service-card:hover::before{
+    opacity:1;
+}
+
+.service-card:hover{
+    transform:
+    translateY(-12px)
+    scale(1.02);
+
+    border-color:
+    rgba(255,184,0,0.4);
+
+    box-shadow:
+    0 20px 50px rgba(255,152,0,0.2);
+}
+
+.service-card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    transition:0.5s;
+}
+
+.service-card:hover img{
+    transform:scale(1.08);
+}
+.service-card:hover h3{
+
+    color:white;
+
+}
+
+.service-content{
+    padding:28px;
+    text-align:center;
+}
+
+.service-content h3{
+
+    font-size:34px;
+
+    font-weight:900;
+
+    color:#ffb800;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    line-height:1.4;
+
+    text-transform:uppercase;
+
+    transition:0.3s;
+
+}
+
+.service-content p{
+
+    color:#d7dce5;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.service-content button{
+
+    width:100%;
+
+    padding:18px;
+
+    border:2px solid #ff9800;
+
+    border-radius:18px;
+
+    background:transparent;
+
+    color:#ffb800;
+
+    font-size:22px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:0.35s;
+
+    text-transform:uppercase;
+
+}
+
+.service-content button:hover{
+
+    background:#ff9800;
+
+    color:white;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 12px 35px rgba(255,152,0,0.45);
+
 }

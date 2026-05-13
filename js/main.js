@@ -117,3 +117,38 @@ function depositMoney(){
   );
 
 }
+const bannerImages = [
+
+  'images/hinh1.jpg',
+  'images/hinh2.jpg',
+  'images/hinh3.jpg'
+
+];
+
+let currentBanner = 0;
+
+function autoSlider(){
+
+  const slider =
+    document.getElementById('slider');
+
+  slider.style.opacity = 0;
+
+  setTimeout(() => {
+
+    currentBanner++;
+
+    if(currentBanner >= bannerImages.length){
+      currentBanner = 0;
+    }
+
+    slider.src =
+      bannerImages[currentBanner];
+
+    slider.style.opacity = 1;
+
+  }, 300);
+
+}
+
+setInterval(autoSlider, 3000);
