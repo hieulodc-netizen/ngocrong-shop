@@ -413,3 +413,73 @@ nav a:hover{
     0 12px 35px rgba(255,152,0,0.45);
 
 }
+/* =========================
+   tránh bể from
+========================= */
+
+@media (max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        height:auto;
+        padding:20px 0;
+        gap:15px;
+    }
+
+    nav{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .header-right{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-wrapper{
+        flex-direction:column;
+    }
+
+    .deposit-box{
+        width:100%;
+    }
+
+    .banner{
+        height:250px;
+    }
+
+    .banner img{
+        height:250px;
+    }
+
+    .section-title h2{
+        font-size:28px;
+    }
+
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .nick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .service-content h3{
+        font-size:24px;
+    }
+
+    .service-content p{
+        font-size:16px;
+    }
+
+    .service-content button{
+        font-size:18px;
+        padding:14px;
+    }
+
+    .modal-content{
+        width:95%;
+    }
+
+}
