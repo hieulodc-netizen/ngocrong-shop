@@ -324,6 +324,7 @@ nav a:hover{
     height:240px;
     object-fit:cover;
     transition:0.5s;
+    display:block;
 }
 
 .service-card:hover img{
