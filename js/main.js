@@ -1,7 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-  loadNicks();
-});
+let balance = localStorage.getItem('balance') || 0;
 
+document.addEventListener('DOMContentLoaded', () => {
+
+  updateBalance();
+
+  loadNicks();
+
+});
 async function loadNicks(){
 
   try{
@@ -59,5 +64,56 @@ function displayNicks(nicks){
 function formatPrice(price){
 
   return Number(price).toLocaleString('vi-VN') + 'đ';
+
+}
+function updateBalance(){
+
+  document.getElementById('balance').innerText =
+    '💰 ' +
+    Number(balance).toLocaleString('vi-VN') +
+    'đ';
+
+  localStorage.setItem('balance', balance);
+
+}
+
+function openDepositModal(){
+
+  document.getElementById('deposit-modal').style.display =
+    'flex';
+
+}
+
+function closeDepositModal(){
+
+  document.getElementById('deposit-modal').style.display =
+    'none';
+
+}
+
+function depositMoney(){
+
+  const amount =
+    document.getElementById('deposit-input').value;
+
+  if(amount <= 0){
+
+    alert('Vui lòng nhập số tiền hợp lệ');
+
+    return;
+
+  }
+
+  balance = Number(balance) + Number(amount);
+
+  updateBalance();
+
+  closeDepositModal();
+
+  alert(
+    'Nạp tiền thành công: ' +
+    Number(amount).toLocaleString('vi-VN') +
+    'đ'
+  );
 
 }

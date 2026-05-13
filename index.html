@@ -32,9 +32,12 @@
 
       <div class="header-right">
 
-        <div class="balance">
+        <div class="balance" id="balance">
           💰 0đ
         </div>
+        <button class="login-btn" onclick="openDepositModal()">
+          Nạp tiền
+        </button>
 
         <button class="login-btn">
           Đăng nhập
@@ -86,6 +89,30 @@
   </section>
 
   <script src="js/main.js"></script>
+  <div class="modal" id="deposit-modal">
+
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeDepositModal()">
+      &times;
+    </span>
+
+    <h2>Nạp tiền vào tài khoản</h2>
+
+    <input 
+      type="number"
+      id="deposit-input"
+      placeholder="Nhập số tiền"
+    >
+
+    <button onclick="depositMoney()">
+      Xác nhận nạp
+    </button>
+
+  </div>
+
+</div>
+<script src="js/main.js"></script>
 
 </body>
 </html>
