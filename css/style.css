@@ -4,6 +4,11 @@
     box-sizing:border-box;
 }
 
+html,
+body{
+    overflow-x:hidden;
+}
+
 body{
     font-family:'Be Vietnam Pro',sans-serif;
     background:#0f1117;
@@ -21,16 +26,21 @@ a{
     padding-inline:16px;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 header{
     background:#151923;
     border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .navbar{
-    height:80px;
+    min-height:80px;
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:20px;
 }
 
 .logo{
@@ -42,6 +52,7 @@ header{
 .logo h1{
     font-size:28px;
     color:#ffb800;
+    line-height:1.2;
 }
 
 .logo-icon{
@@ -91,7 +102,16 @@ nav a:hover{
     font-weight:bold;
     border-radius:10px;
     cursor:pointer;
+    transition:0.3s;
 }
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
     padding:40px 0;
@@ -99,15 +119,13 @@ nav a:hover{
 
 .hero-wrapper{
     display:grid;
-    grid-template-columns:
-    minmax(280px,320px)
-    1fr;
-
+    grid-template-columns:minmax(280px,320px) 1fr;
     gap:25px;
 }
 
 .deposit-box{
-    width:320px;
+    width:100%;
+    max-width:320px;
     background:#151923;
     padding:25px;
     border-radius:20px;
@@ -138,7 +156,7 @@ nav a:hover{
 }
 
 .banner{
-    flex:1;
+    width:100%;
     aspect-ratio:16/7;
     min-height:220px;
 }
@@ -147,8 +165,13 @@ nav a:hover{
     width:100%;
     height:100%;
     object-fit:cover;
+    border-radius:20px;
     display:block;
 }
+
+/* =========================
+   PRODUCTS
+========================= */
 
 .products{
     padding:50px 0;
@@ -160,7 +183,7 @@ nav a:hover{
 }
 
 .section-title h2{
-    font-size:40px;
+    font-size:clamp(28px,8vw,40px);
     color:#ffb800;
 }
 
@@ -185,6 +208,7 @@ nav a:hover{
     width:100%;
     height:220px;
     object-fit:cover;
+    display:block;
 }
 
 .nick-content{
@@ -217,6 +241,11 @@ nav a:hover{
     font-weight:bold;
     cursor:pointer;
 }
+
+/* =========================
+   MODAL
+========================= */
+
 .modal{
     position:fixed;
     inset:0;
@@ -228,7 +257,8 @@ nav a:hover{
 }
 
 .modal-content{
-    width:400px;
+    width:95%;
+    max-width:400px;
     background:#151923;
     padding:30px;
     border-radius:20px;
@@ -266,6 +296,11 @@ nav a:hover{
     font-size:30px;
     cursor:pointer;
 }
+
+/* =========================
+   SERVICES
+========================= */
+
 .services{
     padding:90px 0;
     background:
@@ -285,9 +320,11 @@ nav a:hover{
     overflow:hidden;
     transition:0.45s;
     border:1px solid rgba(255,255,255,0.06);
-    box-shadow:
-    0 10px 35px rgba(0,0,0,0.5);
+    box-shadow:0 10px 35px rgba(0,0,0,0.5);
     backdrop-filter:blur(12px);
+    display:flex;
+    flex-direction:column;
+    height:100%;
 }
 
 .service-card::before{
@@ -310,15 +347,9 @@ nav a:hover{
 }
 
 .service-card:hover{
-    transform:
-    translateY(-12px)
-    scale(1.02);
-
-    border-color:
-    rgba(255,184,0,0.4);
-
-    box-shadow:
-    0 20px 50px rgba(255,152,0,0.2);
+    transform:translateY(-12px) scale(1.02);
+    border-color:rgba(255,184,0,0.4);
+    box-shadow:0 20px 50px rgba(255,152,0,0.2);
 }
 
 .service-card img{
@@ -332,171 +363,64 @@ nav a:hover{
 .service-card:hover img{
     transform:scale(1.08);
 }
-.service-card:hover h3{
-
-    color:white;
-
-}
 
 .service-content{
-    padding:28px;
+    padding:20px;
     text-align:center;
+    display:flex;
+    flex-direction:column;
+    flex:1;
 }
 
 .service-content h3{
-
-    font-size:34px;
-
-    font-weight:900;
-
+    font-size:24px;
+    font-weight:800;
     color:#ffb800;
-
-    text-align:center;
-
-    margin-bottom:20px;
-
+    margin-bottom:10px;
     line-height:1.4;
-
-    text-transform:uppercase;
-
-    transition:0.3s;
-
 }
 
 .service-content p{
+    font-size:16px;
+    color:#ffd54f;
+    margin-bottom:20px;
+    line-height:1.5;
+}
 
-    color:#d7dce5;
-
-    font-size:20px;
-
-    font-weight:600;
-
-    text-align:center;
-
-    margin-bottom:30px;
-
+.service-content a{
+    margin-top:auto;
 }
 
 .service-content button{
-
     width:100%;
-
-    padding:18px;
-
-    border:2px solid #ff9800;
-
-    border-radius:18px;
-
-    background:transparent;
-
-    color:#ffb800;
-
-    font-size:22px;
-
-    font-weight:900;
-
-    letter-spacing:1px;
-
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:#ff9800;
+    color:white;
+    font-size:18px;
+    font-weight:700;
     cursor:pointer;
-
-    transition:0.35s;
-
-    text-transform:uppercase;
-
+    transition:0.3s;
 }
 
 .service-content button:hover{
-
-    background:#ff9800;
-
-    color:white;
-
-    transform:translateY(-4px);
-
-    box-shadow:
-    0 12px 35px rgba(255,152,0,0.45);
-
+    background:#ffb800;
+    transform:translateY(-3px);
 }
+
 /* =========================
-   tránh bể from
+   RESPONSIVE
 ========================= */
 
 @media (max-width:768px){
 
     .navbar{
         flex-direction:column;
-        height:auto;
+        align-items:center;
+        justify-content:center;
         padding:20px 0;
         gap:15px;
-    }
-
-    nav{
-        gap:15px;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .header-right{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .hero-wrapper{
-        grid-template-columns: 1fr;
-    }
-
-    .deposit-box{
-        width:100%;
-        max-width: 320px;
-    }
-
-    .banner{
-        height:250px;
-    }
-
-    .banner img{
-        height:250px;
-    }
-
-    .section-title h2{
-        font-size: clamp(28px,8w,40px);
-    }
-
-    .service-grid{
-        grid-template-columns:1fr;
-    }
-
-    .nick-grid{
-        grid-template-columns:1fr;
-    }
-
-    .service-content h3{
-        font-size:24px;
-    }
-
-    .service-content p{
-        font-size:16px;
-    }
-
-    .service-content button{
-        font-size:18px;
-        padding:14px;
-    }
-
-    .modal-content{
-        width:95%;
-    }
-
-}
-@media (max-width:768px){
-
-    .navbar{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        gap:15px;
-        height:auto;
-        padding:15px 0;
     }
 
     .logo{
@@ -505,15 +429,13 @@ nav a:hover{
     }
 
     .logo h1{
-        font-size:20px;
-        line-height:1.2;
+        font-size:22px;
     }
 
     nav{
-        display:flex;
         justify-content:center;
         flex-wrap:wrap;
-        gap:10px;
+        gap:15px;
     }
 
     nav a{
@@ -522,7 +444,6 @@ nav a:hover{
 
     .header-right{
         width:100%;
-        display:flex;
         justify-content:center;
         flex-wrap:wrap;
         gap:10px;
@@ -538,7 +459,25 @@ nav a:hover{
         padding:10px;
     }
 
-}
-html,body{
-    overflow-x:hidden;
+    .hero-wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .deposit-box{
+        max-width:100%;
+    }
+
+    .banner{
+        min-height:220px;
+    }
+
+    .service-grid,
+    .nick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .service-card img{
+        height:220px;
+    }
+
 }
