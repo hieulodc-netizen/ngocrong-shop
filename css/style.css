@@ -16,10 +16,9 @@ a{
 }
 
 .container{
-    width:100%;
-    max-width:1200px;
-    padding:0 15px;
+    width:min(1200px,100%);
     margin:auto;
+    padding-inline:16px;
 }
 
 header{
@@ -99,7 +98,11 @@ nav a:hover{
 }
 
 .hero-wrapper{
-    display:flex;
+    display:grid;
+    grid-template-columns:
+    minmax(280px,320px)
+    1fr;
+
     gap:25px;
 }
 
@@ -136,16 +139,15 @@ nav a:hover{
 
 .banner{
     flex:1;
-    height:420px;
+    aspect-ratio:16/7;
+    min-height:220px;
 }
 
 .banner img{
     width:100%;
-    height:420px;
+    height:100%;
     object-fit:cover;
-    border-radius:20px;
     display:block;
-    transition:opacity 0.3s ease;
 }
 
 .products{
@@ -440,7 +442,7 @@ nav a:hover{
     }
 
     .hero-wrapper{
-        flex-direction:column;
+        grid-template-columns: 1fr;
     }
 
     .deposit-box{
@@ -456,7 +458,7 @@ nav a:hover{
     }
 
     .section-title h2{
-        font-size:28px;
+        font-size: clamp(26px,5w,40px);
     }
 
     .service-grid{
@@ -484,4 +486,7 @@ nav a:hover{
         width:95%;
     }
 
+}
+html,body{
+    overflow-x:hidden;
 }
