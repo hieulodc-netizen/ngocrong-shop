@@ -482,22 +482,227 @@ nav a:hover{
 
 }
 /*nick-so-sinh*/
-.buy-link{
+.service-link{
+    text-decoration:none;
     display:block;
+}
+
+.buy-link{
     width:100%;
     padding:14px;
     border-radius:14px;
     background:#ff9800;
     color:white;
+    text-align:center;
     font-size:18px;
     font-weight:700;
-    text-align:center;
-    transition:0.3s;
-    position:relative;
-    z-index:999;
+    margin-top:15px;
+}
+/* =========================
+   SEARCH + FILTER
+========================= */
+
+.search-box{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin:40px 0;
+    padding:25px;
+    background:#151923;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
 }
 
-.buy-link:hover{
-    background:#ffb800;
-    transform:translateY(-3px);
+.search-box input,
+.search-box select{
+    flex:1;
+    min-width:180px;
+    padding:15px 18px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    background:#222838;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.search-box input:focus,
+.search-box select:focus{
+    border:1px solid #ff9800;
+    box-shadow:
+    0 0 15px rgba(255,152,0,0.35);
+}
+
+.search-box input::placeholder{
+    color:#a7acb8;
+}
+
+.search-box button{
+    padding:15px 25px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(
+        135deg,
+        #ff9800,
+        #ffb800
+    );
+    color:#111;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    transition:0.35s;
+}
+
+.search-box button:hover{
+    transform:
+    translateY(-3px)
+    scale(1.03);
+
+    box-shadow:
+    0 10px 25px rgba(255,152,0,0.35);
+}
+
+
+/* NÚT XÓA LỌC */
+
+.reset-btn{
+    background:
+    linear-gradient(
+        135deg,
+        #ff3d00,
+        #ff6d00
+    ) !important;
+
+    color:white !important;
+}
+
+.reset-btn:hover{
+    box-shadow:
+    0 10px 25px rgba(255,61,0,0.35);
+}
+
+
+/* =========================
+   SHOP CARD
+========================= */
+
+.shop-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+}
+
+.shop-card{
+    background:#151923;
+    border-radius:24px;
+    overflow:hidden;
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
+}
+
+.shop-card:hover{
+    transform:
+    translateY(-8px)
+    scale(1.02);
+
+    border-color:
+    rgba(255,184,0,0.3);
+
+    box-shadow:
+    0 20px 45px rgba(255,152,0,0.18);
+}
+
+.shop-card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    display:block;
+}
+
+.shop-info{
+    padding:22px;
+}
+
+.shop-info h3{
+    font-size:24px;
+    color:#ffb800;
+    margin-bottom:15px;
+    font-weight:800;
+}
+
+.shop-info p{
+    color:#d4d8df;
+    margin-bottom:10px;
+    font-size:15px;
+    font-weight:500;
+}
+
+.shop-price{
+    margin-top:20px;
+    font-size:28px;
+    color:#ffd54f;
+    font-weight:900;
+}
+
+.shop-info button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:
+    linear-gradient(
+        135deg,
+        #ff9800,
+        #ffb800
+    );
+
+    color:#111;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+    transition:0.35s;
+}
+
+.shop-info button:hover{
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 10px 25px rgba(255,152,0,0.35);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    .search-box{
+        padding:18px;
+    }
+
+    .search-box input,
+    .search-box select,
+    .search-box button{
+        width:100%;
+    }
+
+    .shop-info h3{
+        font-size:20px;
+    }
+
+    .shop-price{
+        font-size:24px;
+    }
+
 }

@@ -2,91 +2,62 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Nick Sơ Sinh</title>
+    <title>Nick Ngọc Rồng Sơ Sinh</title>
 
     <link rel="stylesheet"
           href="css/style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap"
           rel="stylesheet">
+
 </head>
 
 <body>
 
-<header class="sub-header">
+    <!-- HEADER -->
 
-    <div class="container navbar">
+    <header>
 
-        <div class="logo">
-            <div class="logo-icon">🐉</div>
-            <h1>Nick Sơ Sinh</h1>
-        </div>
+        <div class="container navbar">
 
-        <nav>
-            <a href="index.html">Trang Chủ</a>
-            <a href="#">Hướng Dẫn</a>
-            <a href="#">Liên Hệ</a>
-        </nav>
+            <!-- LOGO -->
 
-    </div>
+            <div class="logo">
 
-</header>
+                <div class="logo-icon">🐉</div>
 
-<section class="nick-shop">
+                <h1>Hiếu Khiêu Vũ - NRO</h1>
 
-    <div class="container">
+            </div>
 
-        <!-- FILTER -->
+            <!-- MENU -->
 
-        <div class="shop-filter">
+            <nav>
 
-            <input type="text"
-                   placeholder="Tìm mã số acc">
+                <a href="index.html">
+                    Trang Chủ
+                </a>
 
-            <select>
-                <option>Tất cả hành tinh</option>
-                <option>Trái đất</option>
-                <option>Namec</option>
-                <option>Xayda</option>
-            </select>
+                <a href="#">
+                    Liên Hệ
+                </a>
 
-            <select>
-                <option>Tất cả server</option>
-                <option>Server 1</option>
-                <option>Server 2</option>
-            </select>
+            </nav>
 
-            <button>Tìm Kiếm</button>
+            <!-- SỐ TIỀN -->
 
-        </div>
+            <div class="header-right">
 
-        <!-- GRID -->
+                <div class="balance"
+                     id="balance">
 
-        <div class="shop-grid">
-
-            <!-- CARD -->
-
-            <div class="shop-card">
-
-                <img src="images" alt="">
-
-                <div class="shop-info">
-
-                    <h3>ACC #44553</h3>
-
-                    <p>🌍 Hành tinh: Trái đất</p>
-
-                    <p>⭐ Server: 9 sao</p>
-
-                    <div class="shop-price">
-                        30,000đ
-                    </div>
-
-                    <button>Mua Ngay</button>
+                    💰 0đ
 
                 </div>
 
@@ -94,9 +65,327 @@
 
         </div>
 
+    </header>
+
+
+    <!-- TITLE -->
+
+    <section class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2> NGỌC RỒNG SƠ SINH</h2>
+            </div>
+        </div>
+
+        <!-- FILTER+TIỀM KHIẾM+XÓA LỌC -->
+         <div class="search-box">
+
+            <!--TÌM MÃ ACC-->
+
+            <input type="text" id="search-input" placeholder="Nhập mã số acc...">
+
+            <!--LỌC GIÁ-->
+
+            <select id="price-filter">
+                <option value="">Tất cả giá</option>
+                <option value="50.000">dưới 50k</option>
+                <option value="100.000">dưới 100k</option>
+                <option value="200.000">dưới 200k</option>
+                <option value="300.000">dưới 300k</option>
+            </select>
+
+            <!--LỌC SERVER-->
+
+            <select id="server-filter">
+                <option value="">Tất cả server</option>
+                <option value="1">server 1</option>
+                <option value="2">server 2</option>
+                <option value="3">server 3</option>
+            </select>
+
+            <!--LỌC HÀNH TINH-->
+
+            <select id="planet-filter">
+                <option value="">Tất cả hành tinh</option>
+                <option value="Trái Đất">Trái Đất</option>
+                <option value="Xayda">Xayda</option>
+                <option value="Namec">Namec</option>
+            </select>
+
+            <!--NÚT TÌM KIẾM+XÓA-->
+
+            <button onclick="searchAcc()">
+                Tìm Kiếm
+            </button>
+
+            <button onclick="resetFilter()" class="reset-btn">
+                Xóa Lọc
+            </button>
+         </div>
+    </section>
+
+    <!-- DANH SÁCH ACC -->
+     <section class="products">
+        <div class="container">
+            <div class="shop-grid" id="acc-list">
+        </div>
     </div>
-
 </section>
+<script>
 
+    let balance =
+    localStorage.getItem('balance') || 0;
+
+    document.getElementById('balance').innerText =
+    '💰 ' + 
+    Number(balance).toLocaleString('vi-VN') +
+    'đ';
+
+
+    let allAccs = [];
+
+
+    async function loadAccs(){
+
+        const response =
+        await fetch('data/nicksosinh.json');
+
+        const accs =
+        await response.json();
+
+        allAccs = accs;
+
+        displayAccs(accs);
+
+    }
+
+
+    function displayAccs(accs){
+
+        const container =
+        document.getElementById('acc-list');
+
+        container.innerHTML =
+        accs.map(acc => `
+
+            <div class="shop-card">
+
+                <img src="${acc.image}" alt="">
+
+                <div class="shop-info">
+
+                    <h3>
+                        ACC #${acc.id}
+                    </h3>
+
+                    <p>
+                        🌍 ${acc.planet}
+                    </p>
+
+                    <p>
+                        ⚔️ ${acc.power}
+                    </p>
+
+                    <p>
+                        ⭐ Server ${acc.server}
+                    </p>
+
+                    <div class="shop-price">
+
+                        ${Number(acc.price)
+                        .toLocaleString('vi-VN')}đ
+
+                    </div>
+
+                    ${
+                      acc.sold
+                      ?
+                      `<button disabled
+                      style="background:#555;color:white">
+                      Đã Bán
+                      </button>`
+                      
+                      :
+                      
+                      `<button onclick="buyAcc('${acc.id}')">
+                        Mua Ngay
+                        </button>`
+                    }
+
+                </div>
+
+            </div>
+
+        `).join('');
+
+    }
+
+
+    function searchAcc(){
+
+        let keyword =
+        document.getElementById('search-input')
+        .value
+        .trim();
+
+        let price =
+        document.getElementById('price-filter')
+        .value;
+
+        let server =
+        document.getElementById('server-filter')
+        .value;
+
+        let planet =
+        document.getElementById('planet-filter')
+        .value;
+
+        let filtered =
+        allAccs.filter(acc => {
+
+            let matchId =
+            acc.id.includes(keyword);
+
+            let matchPrice =
+            !price || acc.price <= Number(price);
+
+            let matchServer =
+            !server || acc.server === server;
+
+            let matchPlanet =
+            !planet || acc.planet === planet;
+
+            return (
+                matchId &&
+                matchPrice &&
+                matchServer &&
+                matchPlanet
+            );
+
+        });
+
+        displayAccs(filtered);
+
+    }
+
+
+    function resetFilter(){
+
+        document.getElementById('search-input')
+        .value = '';
+
+        document.getElementById('price-filter')
+        .value = '';
+
+        document.getElementById('server-filter')
+        .value = '';
+
+        document.getElementById('planet-filter')
+        .value = '';
+
+        displayAccs(allAccs);
+        let soldAccs =
+        JSON.parse(
+            localStorage.getItem('soldAccs')
+        ) || [];
+        allAccs = accs.map(acc => {
+            if(soldAccs.includes(acc.id)){
+                acc.sold = true;
+            }
+            return acc;
+        });
+    }
+
+    <!-- bán acc-->
+    function buyAcc(id){
+        let acc =
+        allAccs.find(acc => acc.id === id);
+        if(!acc) return;
+        let balance =
+        Number(
+            localStorage.getItem('balance')
+        ) || 0;
+        
+        /* KIỂM TRA TIỀN */
+        
+        if(balance < acc.price){
+            alert('Không đủ tiền để mua acc!');
+            return;
+        }
+        let confirmBuy =
+        confirm(
+            'Bạn muốn mua ACC #' +
+            id +
+            ' với giá ' +
+            acc.price.toLocaleString('vi-VN') +
+            'đ ?'
+        );
+
+        if(!confirmBuy) return;
+
+
+        /* TRỪ TIỀN */
+        balance -= acc.price;
+
+        localStorage.setItem(
+            'balance',
+            balance
+        );
+
+
+        /* CẬP NHẬT SỐ DƯ */
+
+        document.getElementById('balance')
+        .innerText =
+        '💰 ' +
+        balance.toLocaleString('vi-VN') +
+        'đ';
+
+
+        /* LƯU ACC ĐÃ BÁN */
+
+        let soldAccs =
+        JSON.parse(
+            localStorage.getItem('soldAccs')
+        ) || [];
+
+        soldAccs.push(id);
+
+        localStorage.setItem(
+            'soldAccs',
+            JSON.stringify(soldAccs)
+        );
+
+
+        /* ĐỔI TRẠNG THÁI */
+
+        allAccs =
+        allAccs.map(acc => {
+
+
+            if(acc.id === id){
+
+                acc.sold = true;
+
+            }
+
+            return acc;
+
+        });
+
+
+        displayAccs(allAccs);
+
+        alert(
+            'Mua ACC #' +
+            id +
+            ' thành công!'
+        );
+
+    }
+loadAccs();
+
+</script>
 </body>
+
 </html>
