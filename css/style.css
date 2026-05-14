@@ -481,3 +481,23 @@ nav a:hover{
     }
 
 }
+/*nick-so-sinh*/
+.buy-link{
+    display:block;
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    background:#ff9800;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    text-align:center;
+    transition:0.3s;
+    position:relative;
+    z-index:999;
+}
+
+.buy-link:hover{
+    background:#ffb800;
+    transform:translateY(-3px);
+}
