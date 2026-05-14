@@ -167,43 +167,43 @@
 
         container.innerHTML =
         accs.map(acc => `
-
-            <div class="shop-card">
-
-                <img src="${acc.image}" alt="">
-
-                <div class="shop-info">
-
-                    
-
-                    <div class="shop-price">
-
-                        ${Number(acc.price)
-                        .toLocaleString('vi-VN')}đ
-
+        <div class="shop-card">
+            <img src="${acc.image}" alt="">
+            <div class="shop-info">
+                h3>ACC #${acc.id}</h3>
+                <p>🌍 Hành Tinh: ${acc.planet}</p>
+                <p>⭐ Server: ${acc.server}</p>
+                <div class="shop-price">
+                    ${Number(acc.price)
+                    .toLocaleString('vi-VN')}đ
                     </div>
+                    <!-- BUTTONS -->
+                    <div class="shop-buttons">
+                        <button onclick="showDetail('${acc.id}')">
+                            Chi Tiết
+                        </button>
+                        ${
+                            acc.sold
+                            ?
+                            `<button disabled
+                              style="
+                              background:#555;
+                              color:white;
+                              cursor:not-allowed;
+                              ">
+                              Đã Bán
+                            </button>`
 
-                    ${
-                      acc.sold
-                      ?
-                      `<button disabled
-                      style="background:#555;color:white">
-                      Đã Bán
-                      </button>`
-                      
-                      :
-                      
-                      `<button onclick="buyAcc('${acc.id}')">
-                        Mua Ngay
-                        </button>`
-                    }
+                            :
 
+                            `<button onclick="buyAcc('${acc.id}')">
+                                Mua Ngay
+                            </button>`
+                        }
+                    </div>
                 </div>
-
             </div>
-
         `).join('');
-
     }
 
 
@@ -282,7 +282,7 @@
         });
     }
 
-    <!-- bán acc-->
+    /*-- bán acc--*/
     function buyAcc(id){
         let acc =
         allAccs.find(acc => acc.id === id);
@@ -370,6 +370,7 @@
 
     }
 loadAccs();
+
 
 </script>
 </body>
