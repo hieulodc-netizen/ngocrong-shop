@@ -1,127 +1,227 @@
-let balance = localStorage.getItem('balance') || 0;
+// ==========================
+// BALANCE
+// ==========================
+
+let balance =
+Number(localStorage.getItem('balance')) || 0;
+
+
+// ==========================
+// DOM READY
+// ==========================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  updateBalance();
+    updateBalance();
 
-  loadNicks();
+    loadNicks();
 
 });
+
+
+// ==========================
+// LOAD NICK
+// ==========================
+
 async function loadNicks(){
 
-  try{
+    const container =
+    document.getElementById('nick-list');
 
-    const response = await fetch('data/nicks.json');
+    // NẾU KHÔNG CÓ LIST THÌ THOÁT
 
-    const nicks = await response.json();
+    if(!container) return;
 
-    displayNicks(nicks);
+    try{
 
-  }catch(error){
+        const response =
+        await fetch('data/nicks.json');
 
-    console.error(error);
+        const nicks =
+        await response.json();
 
-  }
+        displayNicks(nicks);
+
+    }catch(error){
+
+        console.error(error);
+
+    }
 
 }
+
+
+// ==========================
+// HIỂN THỊ NICK
+// ==========================
 
 function displayNicks(nicks){
 
-  const container = document.getElementById('nick-list');
+    const container =
+    document.getElementById('nick-list');
 
-  container.innerHTML = nicks.map(nick => `
+    if(!container) return;
 
-    <div class="nick-card">
+    container.innerHTML = nicks.map(nick => `
 
-      <img src="${nick.image}" alt="${nick.name}">
+        <div class="nick-card">
 
-      <div class="nick-content">
+            <img src="${nick.image}" alt="${nick.name}">
 
-        <h3>${nick.name}</h3>
+            <div class="nick-content">
 
-        <p class="info">🌍 ${nick.server}</p>
+                <h3>${nick.name}</h3>
 
-        <p class="info">⚔️ SP: ${nick.sp}</p>
+                <p class="info">
+                    🌍 ${nick.server}
+                </p>
 
-        <p class="info">👤 Hành tinh: ${nick.planet}</p>
+                <p class="info">
+                    ⚔️ SP: ${nick.sp}
+                </p>
 
-        <div class="price">
-          ${formatPrice(nick.price)}
+                <p class="info">
+                    👤 Hành tinh: ${nick.planet}
+                </p>
+
+                <div class="price">
+                    ${formatPrice(nick.price)}
+                </div>
+
+                <button class="buy-btn">
+                    Mua ngay
+                </button>
+
+            </div>
+
         </div>
 
-        <button class="buy-btn">
-          Mua ngay
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join('');
+    `).join('');
 
 }
+
+
+// ==========================
+// FORMAT PRICE
+// ==========================
 
 function formatPrice(price){
 
-  return Number(price).toLocaleString('vi-VN') + 'đ';
+    return Number(price)
+    .toLocaleString('vi-VN') + 'đ';
 
 }
+
+
+// ==========================
+// UPDATE BALANCE
+// ==========================
+
 function updateBalance(){
 
-  document.getElementById('balance').innerText =
-    '💰 ' +
-    Number(balance).toLocaleString('vi-VN') +
-    'đ';
+    const balanceEl =
+    document.getElementById('balance');
 
-  localStorage.setItem('balance', balance);
+    if(balanceEl){
+
+        balanceEl.innerText =
+
+        '💰 ' +
+
+        Number(balance)
+        .toLocaleString('vi-VN') +
+
+        'đ';
+
+    }
+
+    localStorage.setItem(
+        'balance',
+        balance
+    );
 
 }
+
+
+// ==========================
+// MODAL NẠP TIỀN
+// ==========================
 
 function openDepositModal(){
 
-  document.getElementById('deposit-modal').style.display =
-    'flex';
+    const modal =
+    document.getElementById('deposit-modal');
+
+    if(modal){
+
+        modal.style.display = 'flex';
+
+    }
 
 }
 
 function closeDepositModal(){
 
-  document.getElementById('deposit-modal').style.display =
-    'none';
+    const modal =
+    document.getElementById('deposit-modal');
+
+    if(modal){
+
+        modal.style.display = 'none';
+
+    }
 
 }
+
+
+// ==========================
+// NẠP TIỀN
+// ==========================
 
 function depositMoney(){
 
-  const amount =
-    document.getElementById('deposit-input').value;
+    const input =
+    document.getElementById('deposit-input');
 
-  if(amount <= 0){
+    if(!input) return;
 
-    alert('Vui lòng nhập số tiền hợp lệ');
+    const amount =
+    Number(input.value);
 
-    return;
+    if(amount <= 0){
 
-  }
+        alert('Vui lòng nhập số tiền hợp lệ');
 
-  balance = Number(balance) + Number(amount);
+        return;
 
-  updateBalance();
+    }
 
-  closeDepositModal();
+    balance += amount;
 
-  alert(
-    'Nạp tiền thành công: ' +
-    Number(amount).toLocaleString('vi-VN') +
-    'đ'
-  );
+    updateBalance();
+
+    closeDepositModal();
+
+    alert(
+        'Nạp thành công ' +
+        amount.toLocaleString('vi-VN') +
+        'đ'
+    );
+
+    input.value = '';
 
 }
+
+
+// ==========================
+// SLIDER
+// ==========================
+
 const bannerImages = [
 
-  'images/banner/hinh1.jpg',
-  'images/banner/hinh2.jpg',
-  'images/banner/hinh3.jpg'
+    'images/banner/hinh1.jpg',
+    'images/banner/hinh2.jpg',
+    'images/banner/hinh3.jpg'
 
 ];
 
@@ -129,189 +229,239 @@ let currentBanner = 0;
 
 function autoSlider(){
 
-  const slider =
+    const slider =
     document.getElementById('slider');
 
-  slider.style.opacity = 0;
+    if(!slider) return;
 
-  setTimeout(() => {
+    slider.style.opacity = 0;
 
-    currentBanner++;
+    setTimeout(() => {
 
-    if(currentBanner >= bannerImages.length){
-      currentBanner = 0;
-    }
+        currentBanner++;
 
-    slider.src =
-      bannerImages[currentBanner];
+        if(currentBanner >= bannerImages.length){
 
-    slider.style.opacity = 1;
+            currentBanner = 0;
 
-  }, 300);
+        }
+
+        slider.src =
+        bannerImages[currentBanner];
+
+        slider.style.opacity = 1;
+
+    },300);
 
 }
 
-setInterval(autoSlider, 3000);
+setInterval(autoSlider,3000);
+
 
 // ==========================
 // AUTH
 // ==========================
 
-let currentUser = localStorage.getItem("currentUser");
+let currentUser =
+localStorage.getItem('currentUser');
 
-function openAuthModal() {
+function openAuthModal(){
 
-  document.getElementById("auth-modal").style.display = "flex";
+    const modal =
+    document.getElementById('auth-modal');
 
-}
+    if(modal){
 
-function closeAuthModal() {
+        modal.style.display = 'flex';
 
-  document.getElementById("auth-modal").style.display = "none";
-
-}
-
-function showRegister() {
-
-  alert("Đã bấm đăng ký");
-
-  document.getElementById("login-form").style.display = "none";
-
-  document.getElementById("register-form").style.display = "block";
-
-  document.getElementById("auth-title").innerText =
-    "Tạo tài khoản";
+    }
 
 }
 
-function showLogin() {
+function closeAuthModal(){
 
-  document.getElementById("login-form").style.display = "block";
+    const modal =
+    document.getElementById('auth-modal');
 
-  document.getElementById("register-form").style.display = "none";
+    if(modal){
 
-  document.getElementById("auth-title").innerText =
-    "Đăng nhập";
+        modal.style.display = 'none';
+
+    }
 
 }
+
+
+// ==========================
+// CHUYỂN FORM
+// ==========================
+
+function showRegister(){
+
+    document.getElementById(
+        'login-form'
+    ).style.display = 'none';
+
+    document.getElementById(
+        'register-form'
+    ).style.display = 'block';
+
+    document.getElementById(
+        'auth-title'
+    ).innerText = 'Tạo tài khoản';
+
+}
+
+function showLogin(){
+
+    document.getElementById(
+        'login-form'
+    ).style.display = 'block';
+
+    document.getElementById(
+        'register-form'
+    ).style.display = 'none';
+
+    document.getElementById(
+        'auth-title'
+    ).innerText = 'Đăng nhập';
+
+}
+
 
 // ==========================
 // REGISTER
 // ==========================
 
-function register() {
+function register(){
 
-  let username =
-    document.getElementById("register-username").value;
+    const username =
+    document.getElementById(
+        'register-username'
+    ).value;
 
-  let password =
-    document.getElementById("register-password").value;
+    const password =
+    document.getElementById(
+        'register-password'
+    ).value;
 
-  let password2 =
-    document.getElementById("register-password2").value;
+    const password2 =
+    document.getElementById(
+        'register-password2'
+    ).value;
 
-  if(username === "" || password === "") {
+    if(
+        username === '' ||
+        password === ''
+    ){
 
-    alert("Vui lòng nhập đầy đủ!");
-    return;
+        alert('Vui lòng nhập đầy đủ');
 
-  }
+        return;
 
-  if(password !== password2) {
+    }
 
-    alert("Mật khẩu không khớp!");
-    return;
+    if(password !== password2){
 
-  }
+        alert('Mật khẩu không khớp');
 
-  let users =
-    JSON.parse(localStorage.getItem("users")) || [];
+        return;
 
-  let checkUser =
-    users.find(u => u.username === username);
+    }
 
-  if(checkUser) {
+    let users =
 
-    alert("Tài khoản đã tồn tại!");
-    return;
+    JSON.parse(
+        localStorage.getItem('users')
+    ) || [];
 
-  }
+    const checkUser =
 
-  users.push({
+    users.find(
+        u => u.username === username
+    );
 
-    username: username,
-    password: password
+    if(checkUser){
 
-  });
+        alert('Tài khoản đã tồn tại');
 
-  localStorage.setItem(
-    "users",
-    JSON.stringify(users)
-  );
+        return;
 
-  alert("Tạo tài khoản thành công!");
+    }
 
-  showLogin();
+    users.push({
+
+        username,
+        password
+
+    });
+
+    localStorage.setItem(
+        'users',
+        JSON.stringify(users)
+    );
+
+    alert('Tạo tài khoản thành công');
+
+    showLogin();
 
 }
+
 
 // ==========================
 // LOGIN
 // ==========================
 
-function login() {
+function login(){
 
-  let username =
-    document.getElementById("login-username").value;
+    const username =
+    document.getElementById(
+        'login-username'
+    ).value;
 
-  let password =
-    document.getElementById("login-password").value;
+    const password =
+    document.getElementById(
+        'login-password'
+    ).value;
 
-  let users =
-    JSON.parse(localStorage.getItem("users")) || [];
+    let users =
 
-  let user =
+    JSON.parse(
+        localStorage.getItem('users')
+    ) || [];
+
+    const user =
+
     users.find(
-      u =>
-      u.username === username &&
-      u.password === password
+
+        u =>
+
+        u.username === username &&
+
+        u.password === password
+
     );
 
-  if(user) {
+    if(user){
 
-    localStorage.setItem(
-      "currentUser",
-      username
-    );
+        localStorage.setItem(
+            'currentUser',
+            username
+        );
 
-    currentUser = username;
+        currentUser = username;
 
-    alert("Đăng nhập thành công!");
+        alert('Đăng nhập thành công');
 
-    closeAuthModal();
+        closeAuthModal();
 
-  } else {
+    }else{
 
-    alert("Sai tài khoản hoặc mật khẩu!");
+        alert('Sai tài khoản hoặc mật khẩu');
 
-  }
+    }
 
 }
-
-// ==========================
-// LOAD SỐ DƯ
-// ==========================
-
-let balance =
-Number(localStorage.getItem('balance')) || 0;
-
-const balanceEl =
-document.getElementById('balance');
-
-balanceEl.innerText =
-'💰 ' +
-balance.toLocaleString('vi-VN') +
-'đ';
 
 
 // ==========================
@@ -328,9 +478,6 @@ let spinning = false;
 
 let currentRotate = 0;
 
-
-// DANH SÁCH QUÀ
-
 const gifts = [
 
     '50K',
@@ -346,63 +493,12 @@ const gifts = [
     'Acc Random'
 
 ];
-
-
-// ==========================
-// BALANCE
-// ==========================
-
-let balance =
-Number(localStorage.getItem('balance')) || 0;
-
-const balanceEl =
-document.getElementById('balance');
-
-balanceEl.innerText =
-'💰 ' +
-balance.toLocaleString('vi-VN') +
-'đ';
-
-
-// ==========================
-// WHEEL
-// ==========================
-
-const wheel =
-document.getElementById('wheel');
-
-const result =
-document.getElementById('result');
-
-let spinning = false;
-
-let currentRotate = 0;
-
-
-// QUÀ
-
-const gifts = [
-
-    '50K',
-
-    'Nick VIP',
-
-    '20K',
-
-    'Trang Bị VIP',
-
-    '100K',
-
-    'Acc Random'
-
-];
-
-
-// ==========================
-// SPIN
-// ==========================
 
 function spinWheel(){
+
+    // NẾU KHÔNG PHẢI TRANG VÒNG QUAY
+
+    if(!wheel) return;
 
     if(spinning) return;
 
@@ -413,29 +509,21 @@ function spinWheel(){
         alert('Không đủ 50K để quay!');
 
         return;
+
     }
 
     spinning = true;
-
 
     // TRỪ TIỀN
 
     balance -= 50000;
 
-    localStorage.setItem(
-        'balance',
-        balance
-    );
-
-    balanceEl.innerText =
-    '💰 ' +
-    balance.toLocaleString('vi-VN') +
-    'đ';
-
+    updateBalance();
 
     // RANDOM
 
     const randomIndex =
+
     Math.floor(
         Math.random() * gifts.length
     );
@@ -443,13 +531,9 @@ function spinWheel(){
     const reward =
     gifts[randomIndex];
 
-
-    // 6 Ô = 60 ĐỘ
+    // 6 Ô
 
     const degPerItem = 60;
-
-
-    // QUAY
 
     const rotateDeg =
 
@@ -457,29 +541,74 @@ function spinWheel(){
 
     (360 - (randomIndex * degPerItem) - 30);
 
-
     currentRotate += rotateDeg;
 
+    // QUAY
 
     wheel.style.transition =
+
     'transform 5s cubic-bezier(0.17,0.67,0.12,0.99)';
 
-
     wheel.style.transform =
-    `rotate(${currentRotate}deg)`;
 
+    `rotate(${currentRotate}deg)`;
 
     // RESULT
 
     setTimeout(() => {
-
+      if(result){
         result.innerHTML =
-
         `🎉 Bạn nhận được:<br><b>${reward}</b>`;
+      }
+      // POPUP THÔNG BÁO
 
-        spinning = false;
 
+      alert(
+
+        '🎉 Chúc mừng!\n\n' +
+
+        'Bạn nhận được: ' +
+
+        reward
+
+      );
+
+
+      spinning = false;
     },5000);
-
 }
-window.spinWheel = spinWheel;
+
+
+// ==========================
+// EXPORT WINDOW
+// ==========================
+
+window.openDepositModal =
+openDepositModal;
+
+window.closeDepositModal =
+closeDepositModal;
+
+window.depositMoney =
+depositMoney;
+
+window.openAuthModal =
+openAuthModal;
+
+window.closeAuthModal =
+closeAuthModal;
+
+window.showRegister =
+showRegister;
+
+window.showLogin =
+showLogin;
+
+window.register =
+register;
+
+window.login =
+login;
+
+window.spinWheel =
+spinWheel;
