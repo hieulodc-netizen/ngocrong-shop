@@ -1,0 +1,79 @@
+[
+    {
+    "id":"VIP01",
+    "thumbnail": "images/vip/vip1.jpg",
+    "images": [
+        "images/vip/vip1.jpg",
+        "images/vip/vip1-2.jpg",
+        "images/vip/vip1-3.jpg"],
+    "planet":"Xayda",
+    "server":"1",
+    "price":3000000,
+    "sold": false
+    },
+
+    {
+    "id":"VIP02",
+    "thumbnail": "images/vip/vip2.jpg",
+    "images": [
+        "images/vip/vip2.jpg",
+        "images/vip/vip2-2.jpg",
+        "images/vip/vip2-3.jpg"],
+    "planet":"Xayda",
+    "server":"1",
+    "price":2000000,
+    "sold": false
+    },
+
+    {
+    "id":"VIP03",
+    "thumbnail": "images/vip/vip3.jpg",
+    "images": [
+        "images/vip/vip3.jpg",
+        "images/vip/vip3-2.jpg",
+        "images/vip/vip3-3.jpg"],
+    "planet":"Trái Đất",
+    "server":"3",
+    "price":2500000,
+    "sold": false
+    },
+
+    {
+    "id":"VIP04",
+    "thumbnail": "images/vip/vip4.jpg",
+    "images": [
+        "images/vip/vip4.jpg",
+        "images/vip/vip4-2.jpg",
+        "images/vip/vip4-3.jpg"],
+    "planet":"Namec",
+    "server":"2",
+    "price":1500000,
+    "sold": false
+    },
+
+    {
+    "id":"VIP05",
+    "thumbnail": "images/vip/vip5.jpg",
+    "images": [
+        "images/vip/vip5.jpg",
+        "images/vip/vip5-2.jpg",
+        "images/vip/vip5-3.jpg"],
+    "planet":"Trái Đất",
+    "server":"3",
+    "price":2000000,
+    "sold": false
+    },
+
+    {
+    "id":"VIP06",
+    "thumbnail": "images/vip/vip6.jpg",
+    "images": [
+        "images/vip/vip6.jpg",
+        "images/vip/vip6-2.jpg",
+        "images/vip/vip6-3.jpg"],
+    "planet":"Xayda",
+    "server":"2",
+    "price":1500000,
+    "sold": false
+    }
+]

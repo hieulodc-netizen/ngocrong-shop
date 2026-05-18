@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick Ngọc Rồng Sơ Sinh</title>
 
-    <link rel="stylesheet"
-          href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -23,62 +16,42 @@
     <!-- HEADER -->
 
     <header>
-
         <div class="container navbar">
 
             <!-- LOGO -->
 
             <div class="logo">
-
                 <div class="logo-icon">🐉</div>
-
                 <h1>Hiếu Khiêu Vũ - NRO</h1>
-
             </div>
 
             <!-- MENU -->
 
             <nav>
-
-                <a href="index.html">
-                    Trang Chủ
-                </a>
-
-                <a href="#">
-                    Liên Hệ
-                </a>
-
+                <a href="index.html">Trang Chủ</a>
+                <a href="https://www.facebook.com/share/18gwoZBv5W/" target="_blank">Liên hệ</a>
             </nav>
 
             <!-- SỐ TIỀN -->
 
             <div class="header-right">
-
-                <div class="balance"
-                     id="balance">
-
-                    💰 0đ
-
-                </div>
-
+                <div class="balance" id="balance">💰 0đ</div>
             </div>
-
         </div>
-
     </header>
-
 
     <!-- TITLE -->
 
     <section class="products">
         <div class="container">
             <div class="section-title">
-                <h2> NGỌC RỒNG SƠ SINH</h2>
+                <h2> NICK NGỌC RỒNG SƠ SINH</h2>
             </div>
         </div>
 
         <!-- FILTER+TIỀM KHIẾM+XÓA LỌC -->
-         <div class="search-box">
+
+        <div class="search-box">
 
             <!--TÌM MÃ ACC-->
 
@@ -114,54 +87,44 @@
 
             <!--NÚT TÌM KIẾM+XÓA-->
 
-            <button onclick="searchAcc()">
-                Tìm Kiếm
-            </button>
 
-            <button onclick="resetFilter()" class="reset-btn">
-                Xóa Lọc
-            </button>
-         </div>
+            <button onclick="searchAcc()">Tìm Kiếm</button>
+
+            <button onclick="resetFilter()" class="reset-btn">Xóa Lọc</button>
+        </div>
     </section>
 
     <!-- DANH SÁCH ACC -->
-     <section class="products">
+    <section class="products">
         <div class="container">
             <div class="shop-grid" id="acc-list">
+            </div>
         </div>
-    </div>
-</section>
-<script>
+    </section>
 
-    let balance =
-    localStorage.getItem('balance') || 0;
+    // BALANCE
 
-    document.getElementById('balance').innerText =
-    '💰 ' + 
-    Number(balance).toLocaleString('vi-VN') +
-    'đ';
+    <script>
+     let balance =
+     localStorage.getItem('balance') || 0;
+     document.getElementById('balance').innerText =
+     '💰 ' + 
+     Number(balance).toLocaleString('vi-VN') +
+     'đ';
 
-
-    let allAccs = [];
-
-
-    async function loadAccs(){
-
+     //LOAD ACC
+  
+     let allAccs = [];
+     async function loadAccs(){
         const response =
         await fetch('data/nicksosinh.json');
-
         const accs =
         await response.json();
-
         allAccs = accs;
-
-        displayAccs(accs);
-
-    }
+        displayAccs(accs);}
 
 
-    function displayAccs(accs){
-
+     function displayAccs(accs){
         const container =
         document.getElementById('acc-list');
 
@@ -170,7 +133,7 @@
         <div class="shop-card">
             <img src="${acc.image}" alt="">
             <div class="shop-info">
-                h3>ACC #${acc.id}</h3>
+                 #${acc.id}</h3>
                 <p>🌍 Hành Tinh: ${acc.planet}</p>
                 <p>⭐ Server: ${acc.server}</p>
                 <div class="shop-price">
@@ -203,11 +166,9 @@
                     </div>
                 </div>
             </div>
-        `).join('');
-    }
+        `).join('');}
 
-
-    function searchAcc(){
+     function searchAcc(){
 
         let keyword =
         document.getElementById('search-input')
@@ -250,12 +211,8 @@
 
         });
 
-        displayAccs(filtered);
-
-    }
-
-
-    function resetFilter(){
+        displayAccs(filtered);}
+     function resetFilter(){
 
         document.getElementById('search-input')
         .value = '';
@@ -279,11 +236,9 @@
                 acc.sold = true;
             }
             return acc;
-        });
-    }
-
-    /*-- bán acc--*/
-    function buyAcc(id){
+        });}
+     /*-- bán acc--*/
+     function buyAcc(id){
         let acc =
         allAccs.find(acc => acc.id === id);
         if(!acc) return;
@@ -368,11 +323,9 @@
             ' thành công!'
         );
 
-    }
-loadAccs();
-
-
-</script>
+     }
+     loadAccs();
+    </script>
 </body>
 
 </html>

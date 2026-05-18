@@ -1,11 +1,573 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Trang bị VIP</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="container navbar">
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <div class="logo-icon">🐉</div>
+
+                <h1>Hiếu Khiêu Vũ - NRO</h1>
+
+            </div>
+
+            <!-- MENU -->
+
+            <nav>
+                <a href="index.html">Trang Chủ</a>
+                <a href="https://www.facebook.com/share/18gwoZBv5W/" target="_blank"> Liên hệ</a>
+            </nav>
+
+            <!-- SỐ TIỀN -->
+
+            <div class="header-right">
+                <div class="balance" id="balance">💰 0đ </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TITLE -->
+
+    <section class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>TRANG BỊ VIP</h2>
+            </div>
+        </div>
+
+        <!-- SEARCH + FILTER -->
+
+        <div class="search-box">
+
+            <!-- TÌM MÃ ACC -->
+
+            <input type="text"id="search-input" placeholder="Nhập mã số acc...">
+
+            <!-- LỌC GIÁ -->
+
+            <select id="price-filter">
+                <option value="">Tất cả giá</option>
+                <option value="500000"> Dưới 500k</option>
+                <option value="1000000">Dưới 1000k</option>
+                <option value="2000000">Dưới 2000k</option>
+                <option value="3000000">Dưới 3000k</option>
+            </select>
+
+            <!-- LỌC SERVER -->
+
+            <select id="server-filter">
+
+                <option value="">Tất cả server</option>
+                <option value="1">Server 1</option>
+                <option value="2">Server 2</option>
+                <option value="3">Server 3</option>
+            </select>
+
+            <!-- LỌC HÀNH TINH -->
+
+            <select id="planet-filter">
+                <option value="">Tất cả hành tinh</option>
+                <option value="Trái Đất">Trái Đất</option>
+                <option value="Xayda">Xayda</option>
+                <option value="Namec">Namec</option>
+
+            </select>
+
+            <!-- NÚT TÌM KIẾM+XÓA -->
+
+            <button onclick="searchAcc()">Tìm Kiếm</button>
+            <button onclick="resetFilter()"class="reset-btn">Xóa Lọc</button>
+        </div>
+    </section>
+
+    <!-- DANH SÁCH ACC -->
+
+    <section class="products">
+        <div class="container">
+            <div class="shop-grid"id="acc-list"></div>
+        </div>
+    </section>
+
+    <!-- MODAL CHI TIẾT -->
+
+    <div
+        class="modal"
+        id="detail-modal"
+    >
+
+        <div
+            class="modal-content detail-modal-content"
+        >
+
+            <span
+                class="close-btn"
+                onclick="closeDetail()"
+            >
+
+                &times;
+
+            </span>
+
+            <div id="detail-content"></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // ==========================
+        // BALANCE
+        // ==========================
+
+        let balance =
+        localStorage.getItem('balance') || 0;
+        document.getElementById('balance').innerText =
+            '💰 ' +
+            Number(balance).toLocaleString('vi-VN') +
+            'đ';
+
+        // ==========================
+        // LOAD ACC
+        // ==========================
+
+        let allAccs = [];
+        async function loadAccs() {
+            const response =
+            await fetch('data/trangbivip.json');
+            const accs =
+            await response.json();
+            allAccs= accs;
+            displayAccs(allAccs);
+
+        }
+
+
+        // ==========================
+        // DISPLAY ACC
+        // ==========================
+
+        function displayAccs(accs) {
+            const container =
+            document.getElementById('acc-list');
+
+            container.innerHTML =
+
+                accs.map(acc => `
+
+                <div class="shop-card">
+
+                    <img
+                        src="${acc.thumbnail}"
+                        alt=""
+                    >
+
+                    <div class="shop-info">
+
+                        <h3>
+                            ACC #${acc.id}
+                        </h3>
+
+                        <p>
+                            🌍 Hành Tinh:
+                            ${acc.planet}
+                        </p>
+
+                        <p>
+                            ⭐ Server:
+                            ${acc.server}
+                        </p>
+
+                        <div class="shop-price">
+
+                            ${Number(acc.price)
+                                .toLocaleString('vi-VN')}đ
+
+                        </div>
+
+                        <div class="shop-buttons">
+
+                            <button
+                                onclick="showDetail('${acc.id}')"
+                            >
+
+                                Chi Tiết
+
+                            </button>
+
+                            ${
+                                acc.sold
+
+                                ?
+
+                                `
+                                <button
+                                    disabled
+
+                                    style="
+                                        background:#555;
+                                        color:white;
+                                        cursor:not-allowed;
+                                    "
+                                >
+
+                                    Đã Bán
+
+                                </button>
+                                `
+
+                                :
+
+                                `
+                                <button
+                                    onclick="buyAcc('${acc.id}')"
+                                >
+
+                                    Mua Ngay
+
+                                </button>
+                                `
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `).join('');
+
+        }
+
+
+        // ==========================
+        // SEARCH
+        // ==========================
+
+        function searchAcc() {
+
+            let keyword =
+            document.getElementById('search-input')
+            .value
+            .trim();
+
+            let price =
+            document.getElementById('price-filter')
+            .value;
+
+            let server =
+            document.getElementById('server-filter')
+            .value;
+
+            let planet =
+            document.getElementById('planet-filter')
+            .value;
+
+
+            let filtered =
+            allAccs.filter(acc => {
+
+                let matchId =
+                acc.id.includes(keyword);
+
+                let matchPrice =
+                !price ||
+                acc.price <= Number(price);
+
+                let matchServer =
+                !server ||
+                acc.server === server;
+
+                let matchPlanet =
+                !planet ||
+                acc.planet === planet;
+
+                return (
+
+                    matchId &&
+                    matchPrice &&
+                    matchServer &&
+                    matchPlanet
+
+                );
+
+            });
+
+            displayAccs(filtered);
+
+        }
+
+
+        // ==========================
+        // RESET FILTER
+        // ==========================
+
+        function resetFilter() {
+
+            document.getElementById('search-input')
+            .value = '';
+
+            document.getElementById('price-filter')
+            .value = '';
+
+            document.getElementById('server-filter')
+            .value = '';
+
+            document.getElementById('planet-filter')
+            .value = '';
+
+            displayAccs(allAccs);
+
+        }
+
+
+        // ==========================
+        // BUY ACC
+        // ==========================
+
+        function buyAcc(id) {
+
+            let acc =
+            allAccs.find(acc => acc.id === id);
+
+            if (!acc) return;
+
+
+            let balance =
+            Number(
+                localStorage.getItem('balance')
+            ) || 0;
+
+
+            // CHECK MONEY
+
+            if (balance < acc.price) {
+
+                alert('Không đủ tiền để mua acc!');
+
+                return;
+
+            }
+
+
+            let confirmBuy =
+            confirm(
+
+                'Bạn muốn mua ACC #' +
+                id +
+                ' với giá ' +
+                acc.price.toLocaleString('vi-VN') +
+                'đ ?'
+
+            );
+
+            if (!confirmBuy) return;
+
+
+            // TRỪ TIỀN
+
+            balance -= acc.price;
+
+            localStorage.setItem(
+                'balance',
+                balance
+            );
+
+
+            // UPDATE BALANCE
+
+            document.getElementById('balance')
+            .innerText =
+
+                '💰 ' +
+                balance.toLocaleString('vi-VN') +
+                'đ';
+
+
+            // SAVE SOLD
+
+            let soldAccs =
+            JSON.parse(
+                localStorage.getItem('soldAccs')
+            ) || [];
+
+            soldAccs.push(id);
+
+            localStorage.setItem(
+
+                'soldAccs',
+
+                JSON.stringify(soldAccs)
+
+            );
+
+
+            // UPDATE TRẠNG THÁI
+
+            acc.sold = true;
+            displayAccs(allAccs);
+
+
+            displayAccs(allAccs);
+
+            closeDetail();
+
+            alert(
+
+                'Mua ACC #' +
+                id +
+                ' thành công!'
+
+            );
+
+        }
+
+
+        // ==========================
+        // DETAIL
+        // ==========================
+
+        function showDetail(id) {
+
+            let acc =
+            allAccs.find(acc => acc.id === id);
+
+            if (!acc) return;
+
+
+            document.getElementById('detail-modal')
+            .style.display = 'flex';
+
+
+            document.getElementById('detail-content')
+            .innerHTML = `
+
+                <div class="detail-title">
+
+                    ACC #${acc.id}
+
+                </div>
+
+
+                <div class="detail-info">
+
+                    <div class="detail-badge">
+
+                        🌍 ${acc.planet}
+
+                    </div>
+
+                    <div class="detail-badge">
+
+                        ⭐ Server ${acc.server}
+
+                    </div>
+
+                    <div class="detail-badge">
+
+                        💰 ${Number(acc.price)
+                            .toLocaleString('vi-VN')}đ
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-images">
+
+                    ${acc.images.map(img => `
+
+                        <img src="${img}">
+
+                    `).join('')}
+
+                </div>
+
+
+                ${
+                    acc.sold
+
+                    ?
+
+                    `
+                    <button
+                        class="detail-buy-btn"
+                        disabled
+
+                        style="
+                            background:#555;
+                            cursor:not-allowed;
+                        "
+                    >
+
+                        Đã Bán
+
+                    </button>
+                    `
+
+                    :
+
+                    `
+                    <button
+                        class="detail-buy-btn"
+
+                        onclick="buyAcc('${acc.id}')"
+                    >
+
+                        Mua Ngay
+
+                    </button>
+                    `
+                }
+
+            `;
+
+        }
+
+
+        // ==========================
+        // CLOSE DETAIL
+        // ==========================
+
+        function closeDetail() {
+
+            document.getElementById('detail-modal')
+            .style.display = 'none';
+
+        }
+
+
+        // ==========================
+        // START
+        // ==========================
+
+        loadAccs();
+
+    </script>
+
 </body>
+
 </html>

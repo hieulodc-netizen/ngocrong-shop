@@ -706,3 +706,279 @@ nav a:hover{
     }
 
 }
+/* =========================
+   ĐĂNG NHẬP
+========================= */
+.modal {
+
+  display: none;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.6);
+
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+}
+
+.modal-content {
+
+  background:#151923 ;
+
+  width: 400px;
+
+  padding: 30px;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+
+  position: relative;
+
+}
+
+.modal-content h2 {
+
+  text-align: center;
+
+  color: #ffb800;
+
+}
+
+.modal-content input {
+
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #222838;
+
+  color: white;
+
+  margin-bottom: 15px;
+
+}
+
+.modal-content button {
+
+  padding: 12px;
+
+  background: #ff9800;
+
+  border: none;
+
+  color: white;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+}
+
+.close-btn {
+
+  position: absolute;
+
+  top: 10px;
+  right: 15px;
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+}
+
+.modal-content p {
+
+  text-align: center;
+
+}
+
+/* =========================
+   CHI TIẾT NICK VIP
+========================= */
+
+.detail-modal-content{
+
+    width:90%;
+    max-width:1000px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:#151923;
+
+    border-radius:24px;
+
+    padding:25px;
+
+}
+
+/* TITLE */
+
+.detail-title{
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:#ffb800;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+}
+
+/* INFO */
+
+.detail-info{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    justify-content:center;
+
+    margin-bottom:25px;
+
+}
+
+.detail-badge{
+
+    background:#222838;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    color:#ffd54f;
+
+}
+
+/* IMAGES */
+
+.detail-images{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+
+}
+
+.detail-images img{
+
+    width:100%;
+
+    border-radius:18px;
+
+    object-fit:cover;
+
+    transition:0.3s;
+
+    border:2px solid transparent;
+
+}
+
+.detail-images img:hover{
+
+    transform:scale(1.03);
+
+    border-color:#ff9800;
+
+}
+
+/* BUTTON */
+
+.detail-buy-btn{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff9800,
+        #ffb800
+    );
+
+    color:#111;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+.detail-buy-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 10px 25px rgba(255,152,0,0.35);
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+    .detail-modal-content{
+
+        width:95%;
+
+        padding:18px;
+
+    }
+
+    .detail-title{
+
+        font-size:24px;
+
+    }
+
+    .detail-images{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

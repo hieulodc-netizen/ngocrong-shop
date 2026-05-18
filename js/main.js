@@ -119,9 +119,9 @@ function depositMoney(){
 }
 const bannerImages = [
 
-  'images/hinh1.jpg',
-  'images/hinh2.jpg',
-  'images/hinh3.jpg'
+  'images/banner/hinh1.jpg',
+  'images/banner/hinh2.jpg',
+  'images/banner/hinh3.jpg'
 
 ];
 
@@ -152,3 +152,148 @@ function autoSlider(){
 }
 
 setInterval(autoSlider, 3000);
+
+// ==========================
+// AUTH
+// ==========================
+
+let currentUser = localStorage.getItem("currentUser");
+
+function openAuthModal() {
+
+  document.getElementById("auth-modal").style.display = "flex";
+
+}
+
+function closeAuthModal() {
+
+  document.getElementById("auth-modal").style.display = "none";
+
+}
+
+function showRegister() {
+
+  alert("Đã bấm đăng ký");
+
+  document.getElementById("login-form").style.display = "none";
+
+  document.getElementById("register-form").style.display = "block";
+
+  document.getElementById("auth-title").innerText =
+    "Tạo tài khoản";
+
+}
+
+function showLogin() {
+
+  document.getElementById("login-form").style.display = "block";
+
+  document.getElementById("register-form").style.display = "none";
+
+  document.getElementById("auth-title").innerText =
+    "Đăng nhập";
+
+}
+
+// ==========================
+// REGISTER
+// ==========================
+
+function register() {
+
+  let username =
+    document.getElementById("register-username").value;
+
+  let password =
+    document.getElementById("register-password").value;
+
+  let password2 =
+    document.getElementById("register-password2").value;
+
+  if(username === "" || password === "") {
+
+    alert("Vui lòng nhập đầy đủ!");
+    return;
+
+  }
+
+  if(password !== password2) {
+
+    alert("Mật khẩu không khớp!");
+    return;
+
+  }
+
+  let users =
+    JSON.parse(localStorage.getItem("users")) || [];
+
+  let checkUser =
+    users.find(u => u.username === username);
+
+  if(checkUser) {
+
+    alert("Tài khoản đã tồn tại!");
+    return;
+
+  }
+
+  users.push({
+
+    username: username,
+    password: password
+
+  });
+
+  localStorage.setItem(
+    "users",
+    JSON.stringify(users)
+  );
+
+  alert("Tạo tài khoản thành công!");
+
+  showLogin();
+
+}
+
+// ==========================
+// LOGIN
+// ==========================
+
+function login() {
+
+  let username =
+    document.getElementById("login-username").value;
+
+  let password =
+    document.getElementById("login-password").value;
+
+  let users =
+    JSON.parse(localStorage.getItem("users")) || [];
+
+  let user =
+    users.find(
+      u =>
+      u.username === username &&
+      u.password === password
+    );
+
+  if(user) {
+
+    localStorage.setItem(
+      "currentUser",
+      username
+    );
+
+    currentUser = username;
+
+    alert("Đăng nhập thành công!");
+
+    closeAuthModal();
+
+  } else {
+
+    alert("Sai tài khoản hoặc mật khẩu!");
+
+  }
+
+}

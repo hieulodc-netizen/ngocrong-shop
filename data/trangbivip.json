@@ -1,0 +1,128 @@
+[
+    {
+        "id":"AC01",
+        "thumbnail": "images/trangbi/trangbi1.jpg",
+        "images": [
+        "images/trangbi/trangbi1.jpg"],
+        "planet":"Trái Đất",
+        "server":"1",
+        "price":800000,
+        "sold": false
+    },
+
+    {
+        "id":"AC02",
+        "thumbnail": "images/trangbi/trangbi2.jpg",
+        "images": [
+        "images/trangbi/trangbi2.jpg"],
+        "planet":"Namec",
+        "server":"3",
+        "price":500000,
+        "sold": false
+    },
+
+    {
+        "id":"AC03",
+        "thumbnail": "images/trangbi/trangbi3.jpg",
+        "images": [
+        "images/trangbi/trangbi3.jpg"],
+        "planet":"Namec",
+        "server":"1",
+        "price":400000,
+        "sold": false
+    },
+
+    {
+        "id":"AC04",
+        "thumbnail": "images/trangbi/trangbi4.jpg",
+        "images": [
+        "images/trangbi/trangbi4.jpg"],
+        "planet":"Trái Đất",
+        "server":"2",
+        "price":500000,
+        "sold": false
+    },
+
+    {
+        "id":"AC05",
+        "thumbnail": "images/trangbi/trangbi5.jpg",
+        "images": [
+        "images/trangbi/trangbi5.jpg"],
+        "planet":"Namec",
+        "server":"3",
+        "price":500000,
+        "sold": false
+    },
+
+    {
+        "id":"AC06",
+        "thumbnail": "images/trangbi/trangbi6.jpg",
+        "images": [
+        "images/trangbi/trangbi6.jpg"],
+        "planet":"Trái Đất",
+        "server":"2",
+        "price":600000,
+        "sold": false
+    },
+
+    {
+        "id":"AC07",
+        "thumbnail": "images/trangbi/trangbi7.jpg",
+        "images": [
+        "images/trangbi/trangbi7.jpg"],
+        "planet":"Xayda",
+        "server":"2",
+        "price":300000,
+        "sold": false
+    },
+    {
+        "id":"AC08",
+        "thumbnail": "images/trangbi/trangbi8.jpg",
+        "images": [
+        "images/trangbi/trangbi8.jpg"],
+        "planet":"Trái Đất",
+        "server":"3",
+        "price":300000,
+        "sold": false
+    },
+    {
+        "id":"AC09",
+        "thumbnail": "images/trangbi/trangbi9.jpg",
+        "images": [
+        "images/trangbi/trangbi9.jpg"],
+        "planet":"Trái Đất",
+        "server":"1",
+        "price":400000,
+        "sold": false
+    },
+    {
+        "id":"AC010",
+        "thumbnail": "images/trangbi/trangbi10.jpg",
+        "images": [
+        "images/trangbi/trangbi10.jpg"],
+        "planet":"Namec",
+        "server":"1",
+        "price":300000,
+        "sold": false
+    },
+    {
+        "id":"AC011",
+        "thumbnail": "images/trangbi/trangbi11.jpg",
+        "images": [
+        "images/trangbi/trangbi11.jpg"],
+        "planet":"Trái Đất",
+        "server":"2",
+        "price":600000,
+        "sold": false
+    },
+    {
+        "id":"AC012",
+        "thumbnail": "images/trangbi/trangbi12.jpg",
+        "images": [
+        "images/trangbi/trangbi12.jpg"],
+        "planet":"Xayda",
+        "server":"3",
+        "price":150000,
+        "sold": false
+    }
+]

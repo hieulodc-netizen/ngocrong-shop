@@ -1,80 +1,81 @@
 [
     {
+    "id":"1001",
+    "image":"images/sosinh/sosinh1.jpg",
+    "planet":"Namec",
+    "server":"1",
+    "price":50000,
+    "sold": false
+    },
+
+    {
     "id":"1002",
-    "image":"images/sosinh1.jpg",
+    "image":"images/sosinh/sosinh2.jpg",
     "planet":"Trái Đất",
     "server":"1",
-    "power":"2 Tỷ Sức Mạnh",
     "price":50000,
     "sold": false
     },
 
     {
     "id":"1003",
-    "image":"images/sosinh1.jpg",
-    "planet":"Trái Đất",
-    "server":"1",
-    "power":"2 Tỷ Sức Mạnh",
+    "image":"images/sosinh/sosinh3.jpg",
+    "planet":"Namec",
+    "server":"3",
     "price":50000,
     "sold": false
     },
 
     {
     "id":"1004",
-    "image":"images/sosinh1.jpg",
-    "planet":"Trái Đất",
-    "server":"1",
-    "power":"2 Tỷ Sức Mạnh",
+    "image":"images/sosinh/sosinh4.jpg",
+    "planet":"Namec",
+    "server":"3",
     "price":50000,
     "sold": false
     },
 
     {
     "id":"1005",
-    "image":"images/sosinh1.jpg",
-    "planet":"Trái Đất",
-    "server":"1",
-    "power":"2 Tỷ Sức Mạnh",
+    "image":"images/sosinh/sosinh5.jpg",
+    "planet":"Xayda",
+    "server":"2",
     "price":50000,
     "sold": false
     },
 
     {
     "id":"1006",
-    "image":"images/sosinh1.jpg",
-    "planet":"Trái Đất",
-    "server":"1",
-    "power":"2 Tỷ Sức Mạnh",
+    "image":"images/sosinh/sosinh6.jpg",
+    "planet":"Xayda",
+    "server":"2",
     "price":50000,
     "sold": false
     },
 
     {
     "id":"1007",
-    "image":"images/sosinh1.jpg",
-    "planet":"Trái Đất",
+    "image":"images/sosinh/sosinh7.jpg",
+    "planet":"Namec",
     "server":"1",
-    "power":"2 Tỷ Sức Mạnh",
     "price":50000,
     "sold": false
     },
 
     {
     "id":"1008",
-    "image":"images/sosinh1.jpg",
-    "planet":"Trái Đất",
-    "server":"1",
-    "power":"2 Tỷ Sức Mạnh",
+    "image":"images/sosinh/sosinh8.jpg",
+    "planet":"Namec",
+    "server":"3",
     "price":50000,
     "sold": false
     },
 
     {
     "id":"1009",
-    "image":"images/sosinh1.jpg",
-    "planet":"Trái Đất",
-    "server":"1",
-    "power":"20 Tỷ Sức Mạnh",
+    "image":"images/sosinh/sosinh8.jpg",
+    "planet":"Namec",
+    "server":"2",
     "price":50000,
     "sold": false
     }
