@@ -298,36 +298,71 @@ function closeAuthModal(){
 
 function showRegister(){
 
-    document.getElementById(
-        'login-form'
-    ).style.display = 'none';
+    const loginForm =
+    document.getElementById('login-form');
 
-    document.getElementById(
-        'register-form'
-    ).style.display = 'block';
+    const registerForm =
+    document.getElementById('register-form');
 
-    document.getElementById(
-        'auth-title'
-    ).innerText = 'Tạo tài khoản';
+    const authTitle =
+    document.getElementById('auth-title');
+
+    if(loginForm){
+
+        loginForm.style.display = 'none';
+
+    }
+
+    if(registerForm){
+
+        registerForm.style.display = 'block';
+
+    }
+
+    if(authTitle){
+
+        authTitle.innerText =
+        'Tạo tài khoản';
+
+    }
 
 }
+
+// ==========================
+// SHOW LOGIN
+// ==========================
 
 function showLogin(){
 
-    document.getElementById(
-        'login-form'
-    ).style.display = 'block';
+    const loginForm =
+    document.getElementById('login-form');
 
-    document.getElementById(
-        'register-form'
-    ).style.display = 'none';
+    const registerForm =
+    document.getElementById('register-form');
 
-    document.getElementById(
-        'auth-title'
-    ).innerText = 'Đăng nhập';
+    const authTitle =
+    document.getElementById('auth-title');
+
+    if(loginForm){
+
+        loginForm.style.display = 'block';
+
+    }
+
+    if(registerForm){
+
+        registerForm.style.display = 'none';
+
+    }
+
+    if(authTitle){
+
+        authTitle.innerText =
+        'Đăng nhập';
+
+    }
 
 }
-
 
 // ==========================
 // REGISTER
@@ -494,11 +529,25 @@ const gifts = [
 
 ];
 
+// ==========================
+// SPIN WHEEL
+// ==========================
+
 function spinWheel(){
 
-    // NẾU KHÔNG PHẢI TRANG VÒNG QUAY
+    const wheel =
+    document.getElementById('wheel');
 
-    if(!wheel) return;
+    const result =
+    document.getElementById('result');
+
+    // KHÔNG PHẢI TRANG VÒNG QUAY
+
+    if(!wheel || !result){
+
+        return;
+
+    }
 
     if(spinning) return;
 
@@ -520,7 +569,7 @@ function spinWheel(){
 
     updateBalance();
 
-    // RANDOM
+    // RANDOM QUÀ
 
     const randomIndex =
 
@@ -531,7 +580,7 @@ function spinWheel(){
     const reward =
     gifts[randomIndex];
 
-    // 6 Ô
+    // QUAY
 
     const degPerItem = 60;
 
@@ -543,8 +592,6 @@ function spinWheel(){
 
     currentRotate += rotateDeg;
 
-    // QUAY
-
     wheel.style.transition =
 
     'transform 5s cubic-bezier(0.17,0.67,0.12,0.99)';
@@ -553,35 +600,39 @@ function spinWheel(){
 
     `rotate(${currentRotate}deg)`;
 
-    // RESULT
+    // KẾT QUẢ
 
     setTimeout(() => {
-      if(result){
+
         result.innerHTML =
+
         `🎉 Bạn nhận được:<br><b>${reward}</b>`;
-      }
-      // POPUP THÔNG BÁO
 
+        alert(
 
-      alert(
+            '🎉 Chúc mừng!\n\n' +
 
-        '🎉 Chúc mừng!\n\n' +
+            'Bạn nhận được: ' +
 
-        'Bạn nhận được: ' +
+            reward
 
-        reward
+        );
 
-      );
+        spinning = false;
 
-
-      spinning = false;
     },5000);
-}
 
+}
 
 // ==========================
 // EXPORT WINDOW
 // ==========================
+
+window.spinWheel = spinWheel;
+
+window.showRegister = showRegister;
+
+window.showLogin = showLogin;
 
 window.openDepositModal =
 openDepositModal;
