@@ -297,3 +297,189 @@ function login() {
   }
 
 }
+
+// ==========================
+// LOAD SỐ DƯ
+// ==========================
+
+let balance =
+Number(localStorage.getItem('balance')) || 0;
+
+const balanceEl =
+document.getElementById('balance');
+
+balanceEl.innerText =
+'💰 ' +
+balance.toLocaleString('vi-VN') +
+'đ';
+
+
+// ==========================
+// VÒNG QUAY
+// ==========================
+
+const wheel =
+document.getElementById('wheel');
+
+const result =
+document.getElementById('result');
+
+let spinning = false;
+
+let currentRotate = 0;
+
+
+// DANH SÁCH QUÀ
+
+const gifts = [
+
+    '50K',
+
+    'Nick VIP',
+
+    '20K',
+
+    'Trang Bị VIP',
+
+    '100K',
+
+    'Acc Random'
+
+];
+
+
+// ==========================
+// BALANCE
+// ==========================
+
+let balance =
+Number(localStorage.getItem('balance')) || 0;
+
+const balanceEl =
+document.getElementById('balance');
+
+balanceEl.innerText =
+'💰 ' +
+balance.toLocaleString('vi-VN') +
+'đ';
+
+
+// ==========================
+// WHEEL
+// ==========================
+
+const wheel =
+document.getElementById('wheel');
+
+const result =
+document.getElementById('result');
+
+let spinning = false;
+
+let currentRotate = 0;
+
+
+// QUÀ
+
+const gifts = [
+
+    '50K',
+
+    'Nick VIP',
+
+    '20K',
+
+    'Trang Bị VIP',
+
+    '100K',
+
+    'Acc Random'
+
+];
+
+
+// ==========================
+// SPIN
+// ==========================
+
+function spinWheel(){
+
+    if(spinning) return;
+
+    // CHECK TIỀN
+
+    if(balance < 50000){
+
+        alert('Không đủ 50K để quay!');
+
+        return;
+    }
+
+    spinning = true;
+
+
+    // TRỪ TIỀN
+
+    balance -= 50000;
+
+    localStorage.setItem(
+        'balance',
+        balance
+    );
+
+    balanceEl.innerText =
+    '💰 ' +
+    balance.toLocaleString('vi-VN') +
+    'đ';
+
+
+    // RANDOM
+
+    const randomIndex =
+    Math.floor(
+        Math.random() * gifts.length
+    );
+
+    const reward =
+    gifts[randomIndex];
+
+
+    // 6 Ô = 60 ĐỘ
+
+    const degPerItem = 60;
+
+
+    // QUAY
+
+    const rotateDeg =
+
+    (360 * 5) +
+
+    (360 - (randomIndex * degPerItem) - 30);
+
+
+    currentRotate += rotateDeg;
+
+
+    wheel.style.transition =
+    'transform 5s cubic-bezier(0.17,0.67,0.12,0.99)';
+
+
+    wheel.style.transform =
+    `rotate(${currentRotate}deg)`;
+
+
+    // RESULT
+
+    setTimeout(() => {
+
+        result.innerHTML =
+
+        `🎉 Bạn nhận được:<br><b>${reward}</b>`;
+
+        spinning = false;
+
+    },5000);
+
+}
+window.spinWheel = spinWheel;

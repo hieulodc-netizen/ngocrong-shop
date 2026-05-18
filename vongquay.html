@@ -1,11 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Vòng Quay Random Siêu VIP</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap"
+          rel="stylesheet">
+
 </head>
+
 <body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="container navbar">
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <div class="logo-icon">🐉</div>
+
+                <h1>Hiếu Khiêu Vũ - NRO</h1>
+
+            </div>
+
+            <!-- MENU -->
+
+            <nav>
+
+                <a href="index.html">
+                    Trang Chủ
+                </a>
+
+                <a href="https://www.facebook.com/share/18gwoZBv5W/"
+                   target="_blank">
+
+                    Liên hệ
+
+                </a>
+
+            </nav>
+
+            <!-- SỐ DƯ -->
+
+            <div class="header-right">
+
+                <div class="balance"
+                     id="balance">
+
+                    💰 0đ
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- VÒNG QUAY -->
+
+    <section class="random-section">
+
+        <div class="container">
+
+            <div class="random-box">
+
+                <h2 class="random-title">
+                    🎰 VÒNG QUAY RANDOM
+                </h2>
+
+                <p class="random-desc">
+                    Thử vận may để nhận ACC VIP,
+                    trang bị hiếm và nhiều phần quà hấp dẫn
+                </p>
+
+
+                <!-- POINTER -->
+
+                <div class="pointer"></div>
+
+
+                <!-- WHEEL -->
+
+                <div class="wheel-wrapper">
+
     
+                    <div class="wheel" id="wheel">
+
+       
+                        <div class="label label1">50K</div>
+       
+                        <div class="label label2">NICK VIP</div>
+      
+                        <div class="label label3">20K</div>
+      
+                        <div class="label label4">TRANG BỊ</div>
+      
+                        <div class="label label5">100K</div>
+     
+                        <div class="label label6">ACC RANDOM</div>
+
+  
+                    </div>
+
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button class="spin-btn" onclick="spinWheel()">QUAY NGAY -50K</button>
+
+
+                <!-- RESULT -->
+
+                <div class="result"
+                     id="result">
+
+                    🍀 Chúc bạn may mắn
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <script src="js/main.js"></script>
 </body>
+
 </html>

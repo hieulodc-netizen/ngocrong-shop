@@ -982,3 +982,605 @@ nav a:hover{
     }
 
 }
+/* =========================
+   VÒNG QUAY RAMDOM
+========================= */
+/* =========================
+   VÒNG QUAY RANDOM FULL VIP
+========================= */
+
+.random-section{
+
+    padding:100px 0;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top,#2a1154 0%,#14071f 40%,#0f1117 100%);
+}
+
+/* SAO NỀN */
+
+.random-section::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(rgba(255,255,255,0.13) 1px,transparent 1px);
+
+    background-size:40px 40px;
+
+    opacity:.3;
+
+    pointer-events:none;
+}
+
+/* BOX */
+
+/* RANDOM BOX */
+
+.random-box{
+    position:relative;
+}
+
+/* WHEEL */
+
+.wheel-wrapper{
+    position:relative;
+    z-index:1;
+}
+
+/* BUTTON */
+
+.spin-btn{
+
+    position:relative;
+
+    z-index:999;
+
+    cursor:pointer;
+
+    pointer-events:auto;
+}
+/* VIỀN GLOW */
+
+.random-box::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:-3px;
+
+    border-radius:40px;
+
+    padding:3px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00d9ff,
+        #ff00f2,
+        #ffb800,
+        #00d9ff
+    );
+
+    -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    animation:borderRotate 7s linear infinite;
+}
+
+@keyframes borderRotate{
+
+    0%{
+        filter:hue-rotate(0deg);
+    }
+
+    100%{
+        filter:hue-rotate(360deg);
+    }
+}
+
+/* TITLE */
+
+.random-title{
+
+    text-align:center;
+
+    font-size:clamp(36px,5vw,62px);
+
+    font-weight:900;
+
+    line-height:1.2;
+
+    margin-bottom:18px;
+
+    background:
+    linear-gradient(
+        to right,
+        #ffe600,
+        #ff9d00,
+        #ff00f2,
+        #00d9ff
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 25px rgba(255,255,255,0.2);
+}
+
+/* DESC */
+
+.random-desc{
+
+    text-align:center;
+
+    max-width:850px;
+
+    margin:auto;
+
+    margin-bottom:55px;
+
+    font-size:clamp(15px,2vw,21px);
+
+    color:#d6dbeb;
+
+    line-height:1.7;
+}
+
+/* POINTER */
+
+.pointer{
+
+    width:0;
+    height:0;
+
+    border-left:30px solid transparent;
+
+    border-right:30px solid transparent;
+
+    border-top:60px solid #ffe600;
+
+    margin:auto;
+
+    position:relative;
+
+    z-index:20;
+
+    filter:
+    drop-shadow(0 0 12px #ffe600)
+    drop-shadow(0 0 25px #ff9800);
+}
+
+/* WRAPPER */
+
+.wheel-wrapper{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:-8px;
+
+    margin-bottom:50px;
+}
+
+/* WHEEL */
+
+.wheel{
+
+    width:min(90vw,600px);
+
+    height:min(90vw,600px);
+
+    border-radius:50%;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:14px solid rgba(255,255,255,0.95);
+
+    background:#111;
+
+    transition:
+    transform 5s cubic-bezier(0.17,0.67,0.12,0.99);
+
+    box-shadow:
+    0 0 25px #00d9ff,
+    0 0 60px rgba(255,0,242,0.45),
+    0 0 120px rgba(0,217,255,0.25);
+}
+
+/* ĐÈN QUAY */
+
+.wheel::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:-15px;
+
+    border-radius:50%;
+
+    border:10px dotted #fff;
+
+    animation:spinLights 10s linear infinite;
+
+    filter:
+    drop-shadow(0 0 10px #fff)
+    drop-shadow(0 0 25px #00d9ff);
+}
+
+@keyframes spinLights{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* TÂM */
+
+.wheel::after{
+
+    content:'🎁';
+
+    position:absolute;
+
+    width:clamp(75px,15vw,115px);
+
+    height:clamp(75px,15vw,115px);
+
+    border-radius:50%;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:clamp(30px,5vw,48px);
+
+    z-index:30;
+
+    border:7px solid white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff00f2,
+        #00d9ff
+    );
+
+    box-shadow:
+    0 0 25px rgba(255,255,255,0.35);
+}
+
+/* =========================
+   WHEEL ITEM
+========================= */
+
+.wheel{
+
+    width:min(90vw,600px);
+    height:min(90vw,600px);
+
+    border-radius:50%;
+
+    position:relative;
+
+    border:14px solid #fff;
+
+    overflow:hidden;
+
+    background:
+    conic-gradient(
+        #ff3d3d 0deg 60deg,
+        #d500f9 60deg 120deg,
+        #00b0ff 120deg 180deg,
+        #00e676 180deg 240deg,
+        #ffd600 240deg 300deg,
+        #ff1744 300deg 360deg
+    );
+
+    box-shadow:
+    0 0 25px #00d9ff,
+    0 0 60px rgba(255,0,242,.4);
+}
+
+/* VẠCH ĐEN */
+
+.wheel::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:50%;
+
+    background:
+    repeating-conic-gradient(
+        transparent 0deg 50deg,
+        #000 50deg 60deg
+    );
+
+    pointer-events:none;
+}
+
+/* TÂM */
+
+.wheel::after{
+
+    content:'🎁';
+
+    position:absolute;
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(135deg,#d500f9,#00b0ff);
+
+    border:8px solid #fff;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:42px;
+
+    z-index:10;
+}
+
+/* LABEL */
+
+.label{
+
+    position:absolute;
+
+    width:140px;
+
+    text-align:center;
+
+    font-size:clamp(15px,2vw,28px);
+
+    font-weight:900;
+
+    color:#fff;
+
+    text-shadow:
+    0 0 5px #000,
+    0 0 10px rgba(0,0,0,.9);
+
+    z-index:5;
+
+    transform-origin:center center;
+}
+
+/* TỪNG Ô */
+
+.label1{
+    top:12%;
+    left:58%;
+    transform:rotate(30deg);
+}
+
+.label2{
+    top:38%;
+    right:2%;
+    transform:rotate(90deg);
+}
+
+.label3{
+    bottom:15%;
+    right:10%;
+    transform:rotate(150deg);
+}
+
+.label4{
+    bottom:15%;
+    left:10%;
+    transform:rotate(-150deg);
+}
+
+.label5{
+    top:40%;
+    left:2%;
+    transform:rotate(-90deg);
+}
+
+.label6{
+    top:12%;
+    left:18%;
+    transform:rotate(-30deg);
+}
+/* MÀU */
+
+
+.item1{
+    background:linear-gradient(135deg,#ff0055,#ff7b00);
+    transform:rotate(0deg);
+}
+
+.item2{
+    background:linear-gradient(135deg,#ff00f2,#6a00ff);
+    transform:rotate(60deg);
+}
+
+.item3{
+    background:linear-gradient(135deg,#00d9ff,#006eff);
+    transform:rotate(120deg);
+}
+
+.item4{
+    background:linear-gradient(135deg,#00ff95,#00c853);
+    transform:rotate(180deg);
+}
+
+.item5{
+    background:linear-gradient(135deg,#ffe600,#ff9800);
+    transform:rotate(240deg);
+}
+
+.item6{
+    background:linear-gradient(135deg,#ff3d3d,#ff006a);
+    transform:rotate(300deg);
+}
+
+/* NÚT QUAY */
+
+.spin-btn{
+
+    display:block;
+
+    margin:auto;
+
+    border:none;
+
+    padding:
+    clamp(16px,2vw,24px)
+    clamp(35px,5vw,60px);
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff9800,
+        #ff006e
+    );
+
+    color:white;
+
+    font-size:clamp(18px,2.4vw,30px);
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:0.35s;
+
+    box-shadow:
+    0 0 20px rgba(255,0,110,0.45),
+    0 0 45px rgba(255,152,0,0.35);
+}
+
+.spin-btn:hover{
+
+    transform:
+    translateY(-5px)
+    scale(1.05);
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffe600,
+        #ff7b00
+    );
+
+    box-shadow:
+    0 0 25px #ffe600,
+    0 0 50px rgba(255,200,0,0.45);
+}
+
+/* RESULT */
+
+.result{
+
+    margin-top:38px;
+
+    text-align:center;
+
+    min-height:70px;
+
+    font-size:clamp(22px,3vw,34px);
+
+    font-weight:900;
+
+    color:white;
+
+    text-shadow:
+    0 0 12px #00d9ff,
+    0 0 25px #ff00f2;
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+    .random-section{
+
+        padding:60px 0;
+    }
+
+    .random-box{
+
+        padding:40px 15px;
+    }
+
+    .pointer{
+
+        border-left:22px solid transparent;
+
+        border-right:22px solid transparent;
+
+        border-top:45px solid #ffe600;
+    }
+
+    .wheel{
+
+        border-width:8px;
+    }
+
+    .wheel::before{
+
+        border-width:6px;
+    }
+
+    .spin-btn{
+
+        width:100%;
+    }
+
+}
+
